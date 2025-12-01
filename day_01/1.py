@@ -1,4 +1,3 @@
-#read from 1data.py
 with open('day_01/1data.py', 'r') as file:
      data = file.read()
 
@@ -15,21 +14,18 @@ for rotation in nums:
     before = curr
     curr = (curr + rotation) % 100
     
-    for _ in range(abs(rotation)):
-        add = 1 if rotation > 0 else -1
-        before = (before + add) % 100
-        if before == 0: count2 += 1
-    
-    
-    
-    # if before + rotation < 0:
-        # count2 += (abs(before + rotation) // 100) + 1
-    # else: count2 += abs(before + rotation) // 100 + (1 if before + rotation == 0 else 0)
-    
-        
-   
+    # brute force solution
+    # for _ in range(abs(rotation)):
+    #     add = 1 if rotation > 0 else -1
+    #     before = (before + add) % 100
+    #     if before == 0: count2 += 1
 
-    # print(before, rotation, curr, count2)
+    #faster solution
+    if before + rotation < 0:
+        count2 += (abs(before + rotation) // 100)
+        if before > 0:
+            count2 += 1
+    else: count2 += abs(before + rotation) // 100 + (1 if before + rotation == 0 else 0)
     
     if curr == 0:
         count += 1
